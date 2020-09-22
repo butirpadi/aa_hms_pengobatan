@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <!-- Menu Form Pengobatan -->
+
+        <record id="view_hospital_hms_treatment_form_custom" model="ir.ui.view">
+            <field name="name">hms.treatment.form.custom</field>
+            <field name="model">hms.treatment</field>
+            <field name="inherit_id" ref="acs_hms.view_hospital_hms_treatment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='diagnosis_id']" position="replace" />
+
+                <field name="finding" position="replace">
+                    <group string="Keluhan Utama">
+                        <field name="finding" nolabel="1"/>
+                    </group>
+                    <group string="Anamnesis">
+                        <field name="anamnesis" nolabel="1"/>
+                    </group>
+                    <group string="Pemeriksaan Fisik">
+                        <field name="pemeriksaan_fisik" nolabel="1"/>
+                    </group>
+                    <group string="Tindakan">
+                        <field name="tindakan" nolabel="1"/>
+                    </group>
+                    <group string="Diagnosis">
+                        <group>
+                            <field name="diagnosis_id" nolabel="1" />
+                        </group>
+                        <group>
+                            <field name="second_diagnosis_id" nolabel="1" />
+                        </group>
+                    </group>
+                </field>
+                <field name="name" position="replace">
+                    <field name="appointment"/>
+                </field>
+                <field name="department_id" position="before">
+                    <field name="name"/>
+                </field>
+                <button name="action_appointment" position="replace">
+                    <button name="action_appointment" invisible="True" string="Appointments" type="object" class="oe_stat_button" groups="acs_hms.group_hms_receptionist" icon="fa-stethoscope"/>
+                </button>
+            </field>
+        </record>
+
+        <!-- Menu Tree Pengobatan -->
+
+        <record id="view_hospital_hms_treatment_tree_custom" model="ir.ui.view">
+            <field name="name">hms.treatment.tree.custom</field>
+            <field name="model">hms.treatment</field>
+            <field name="inherit_id" ref="acs_hms.view_hospital_hms_treatment_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="before">
+                    <field name="appointment"/>
+                </field>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
